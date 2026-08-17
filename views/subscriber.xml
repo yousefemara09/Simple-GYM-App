@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="subscriber_tree_id" model="ir.ui.view">
+        <field name="name">subscriber_tree</field>
+        <field name="model">subscriber</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="package_id"/>
+                <field name="phone"/>
+                <field name="state"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="subscriber_form_id" model="ir.ui.view">
+        <field name="name">subscriber_form</field>
+        <field name="model">subscriber</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <button class="btn-primary" name="button_call_wizard"
+                            type="object" string="Call Wizard Update"/>
+                    <div class="oe_title">
+                        <h3>
+                            <label for="name"/>
+                        </h3>
+                        <field name="name"/>
+                    </div>
+                    <group col="2">
+                        <group string="Primary Data">
+                            <field name="ref"/>
+                            <field name="email"/>
+                            <field name="package_id"/>
+                            <field name="price"/>
+                            <field name="state"/>
+                        </group>
+                        <group string="Additional Data">
+                            <field name="phone"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="subscriber_search_id" model="ir.ui.view">
+        <field name="name">subscriber_search</field>
+        <field name="model">subscriber</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="package_id"/>
+                <filter name="package_id" string="package name" context="{'group_by':'package_id'}"/>
+                <filter name="price" string="price" domain="[('price','>','200')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="subscriber_actions" model="ir.actions.act_window">
+        <field name="name">subscriber</field>
+        <field name="res_model">subscriber</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="server_exp_sub" model="ir.actions.server">
+        <field name="name">server state expired</field>
+        <field name="model_id" ref="model_subscriber"/>
+        <field name="binding_model_id" ref="model_subscriber"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.action_server_expire_subscriber()
+        </field>
+    </record>
+
+    <record id="server_act_sub" model="ir.actions.server">
+        <field name="name">server state active</field>
+        <field name="model_id" ref="model_subscriber"/>
+        <field name="binding_model_id" ref="model_subscriber"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.action_server_active_subscriber()
+        </field>
+    </record>
+
+    <menuitem
+         id="subscriber_id"
+         name="subscriber"
+         parent="gym_id"
+         action="subscriber_actions"
+         sequence="1"
+    />
+</odoo>

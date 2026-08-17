@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_create,perm_write,perm_unlink
+access_subscriber_user,subscriber.user,model_subscriber,,1,1,1,1
+access_package_user,package.user,model_package,,1,1,1,1
+access_renew_wizard_user,renew.wizard.user,model_renew_wizard,,1,1,1,1

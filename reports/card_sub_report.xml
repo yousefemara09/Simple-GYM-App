@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="report_all_sub" model="ir.actions.report">
+        <field name="name">report_all_sub</field>
+        <field name="model">subscriber</field>
+
+        <field name="binding_model_id" ref="model_subscriber"/>
+        <field name="binding_type">report</field>
+
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gym_app.subscriber</field>
+    </record>
+    <template id="subscriber">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Subscriber Report</h2>
+                        <p>
+                            Name:
+                            <span t-field="doc.name"/>
+                        </p>
+
+                        <p>
+                            Phone:
+                            <span t-field="doc.phone"/>
+                        </p>
+                        <p>
+                            Package:
+                            <span t-field="doc.package_id"/>
+                        </p>
+
+                        <p>
+                            Start Date:
+                            <span t-field="doc.start_date"/>
+                        </p>
+
+                        <p>
+                            End Date:
+                            <span t-field="doc.end_date"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

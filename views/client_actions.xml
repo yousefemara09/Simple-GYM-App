@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_gym_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">gym_app.dashboard_gym</field>
+    </record>
+
+    <record id="action_subscriber_gym_owl" model="ir.actions.client">
+        <field name="name">Subscribers (OWL)</field>
+        <field name="tag">gym_app.subscriber_gym</field>
+    </record>
+
+    <menuitem
+        id="gym_dashboard_menu"
+        name="Dashboard"
+        parent="gym_id"
+        action="action_gym_dashboard"
+        sequence="0"
+    />
+
+    <menuitem
+        id="subscriber_gym_owl_menu"
+        name="Subscribers (OWL)"
+        parent="gym_id"
+        action="action_subscriber_gym_owl"
+        sequence="3"
+    />
+</odoo>

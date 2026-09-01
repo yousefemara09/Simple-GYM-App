@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="gym_app.FormView">
+        <div class="subscriber_card">
+            <h3>Create Subscriber</h3>
+
+            <div class="mb-2">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" t-model="form.name" placeholder="Enter name" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" t-model="form.phone" placeholder="Enter phone" />
+            </div>
+
+            <button type="button" class="btn btn-primary me-2" t-on-click="create_data">
+                Create
+            </button>
+            <button type="button" class="btn btn-secondary" t-on-click="cancel">
+                Cancel
+            </button>
+        </div>
+    </t>
+</templates>

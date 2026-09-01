@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="gym_app.SubscriberGymList">
+        <div class="gym_container">
+            <h1 class="gym_title">GYM Subscribers</h1>
+
+            <button type="button" class="btn btn-primary mb-3" t-on-click="open_create">Create Subscriber</button>
+
+            <t t-if="state.showCreate">
+                <SubscriberCard onCreated="created_successfully"/>
+            </t>
+
+            <table class="subscriber_table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ref</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="state.records" t-as="record" t-key="record.id">
+                        <tr>
+                            <td><t t-esc="record.id"/></td>
+                            <td><t t-esc="record.ref"/></td>
+                            <td><t t-esc="record.name"/></td>
+                            <td><t t-esc="record.phone"/></td>
+                            <td>
+                                <button class="btn btn-danger" t-on-click="() => this.delete_data(record.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</templates>

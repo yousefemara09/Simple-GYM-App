@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="gym_app.gymDashboard">
+        <div class="p-4">
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <div class="card p-3 shadow-sm border-start border-primary border-4 h-100">
+                        <div class="text-muted small fw-bold">Total Subscribers</div>
+                        <div class="h2 mb-0 fw-bold text-primary mt-2">
+                            <t t-esc="totalSubscribers"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card p-3 shadow-sm border-start border-success border-4 h-100">
+                        <div class="text-muted small fw-bold">Subscribers Active</div>
+                        <div class="h2 mb-0 fw-bold text-success mt-2">
+                            <t t-esc="activeSubscribers"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card p-3 shadow-sm border-start border-danger border-4 h-100">
+                        <div class="text-muted small fw-bold">Subscribers Unactive</div>
+                        <div class="h2 mb-0 fw-bold text-danger mt-2">
+                            <t t-esc="expiredSubscribers"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 d-flex gap-3">
+                <div class="input-group" style="max-width: 400px;">
+                    <span class="input-group-text bg-white"><i class="fa fa-search text-muted"></i></span>
+
+                    <input type="text"
+                           class="form-control border-start-0"
+                           placeholder="Searching Name , Phone , Reference......."
+                           t-on-input="onSearchInput"/>
+                </div>
+                <select class="form-select" t-on-change="setFilter">
+                    <option value="all">All</option>
+                    <option value="active">Active</option>
+                    <option value="expired">Expired</option>
+                </select>
+            </div>
+            <div style="max-height: 500px; overflow-y: auto;">
+                <table class="subscriber_table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ref</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="CurrentPageSubscribers" t-as="sub" t-key="sub.id">
+                            <tr>
+                                <td><t t-esc="sub.id"/></td>
+                                <td><t t-esc="sub.ref"/></td>
+                                <td><t t-esc="sub.name"/></td>
+                                <td><t t-esc="sub.phone || '-'"/></td>
+                                <td><t t-esc="sub.state"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-secondary" t-on-click="previousPage">Previous</button>
+                <span><t t-esc="state.currentPage"/>/<t t-esc="totalPages"/></span>
+                <button class="btn btn-primary" t-on-click="nextPage">Next</button>
+            </div>
+        </div>
+    </t>
+</templates>
